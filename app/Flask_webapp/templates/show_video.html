@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Videos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.1">
+    <style>
+         h1 {text-align: center; font-size: 40px}
+         h2 {text-align: center; font-size: 30px}
+         h3 {font-size: 25px}
+    </style>
+</head>
+<body>
+    <h1>Event Videos</h1>
+    <h3><a href="/">Go back to the list</a></h3>
+     <br><br><br><br>
+    <div class="video-list">    
+        {% for filename in list_of_videos %}        
+            <h2><a href="{{ url_for('serve_video', video_path=filename) }}" target="_blank">
+               <p>{{ filename }}
+            </a></h2>
+        {% endfor %}    
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+# Use the official Python image as the base image
+# Pull from DockerHub the Docker Python images version3.13.0a4 (maintained by Python Software Foundation) along with Alpine (a lightweight Linux distribution) version (3.19).
+# Often used due to its small size
+#FROM python:3.13.0a4-alpine3.19
+FROM public.ecr.aws/lambda/python:3.12
+
+# To install numpy in a Docker image based upon the OFFICIAL DOCKER HUB python:3.8-alpine3.14 image, you must include the following in the Dockerfile:
+
+RUN apk add --no-cache \
+    build-base \
+    musl-dev \
+    python3-dev \
+    openblas-dev \
+    freetype-dev \
+#    libffi-dev \
+#    openssl-dev
+
+
+
+# First copy ONLY the requirements.txt  to leverage Docker cache
+# Copy FROM is (Relative to the Dockerfile location) .... INTO a folder TO BE created (here called app) INSIDE the Docker Image (Destination)
+COPY app/requirements.txt app/requirements.txt
+
+# Select the working directory INSIDE the Docker Image where the SUBSEQUENT commands will be executed
+WORKDIR /app
+
+# install INSIDE THE CONTAINER the dependencies found in requirements.txt
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
+
+# copy all content FROM (Relative to Dockerfile location).... INTO the work directory /app INSIDE the Docker Image (Destination)
+COPY /app /app
+
+# specify the port number the container should expose
+# "EXPOSE" NOT NEEDED b/c the .py python script DOES NOT USE A PORT VIA if __name__ == "__main__":
+#                                                                 app.run("0.0.0.0", 8000)
+# Here RATHER: LISTENING PORT is HANDLED by the "gunicorn" command BELOW
+#EXPOSE 8000
+
+
+# NOT NEEDED: CMD ["python", "main_CONTAINER_for_APP_STAND_ALONE.py"] b/c Command to run WHEN THE CONTAINER STARTS is HANDLED by the "gunicorn" command BELOW!!!!!
+# Gunicorn is a popular PRODUCTION-READY WSGI Server. Another one is uWSGI.
+# ""-chdir" app NOT needed b/c we USED ABOVE: "WORKDIR /app" !!!
+# gunicorn -w 4 -b 0.0.0.0:80 -chdir app main_CONTAINER_for_APP_STAND_ALONE:app
+# gunicorn -w 4 -b 0.0.0.0:80 main_CONTAINER_for_APP_STAND_ALONE:app
+CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:80", "main_CONTAINER_for_APP_STAND_ALONE:app"]
+                                                   
+
+

@@ -1,0 +1,12 @@
+# For media_views.py
+
+boto3
+flask
+# Gunicorn is a popular Production-Ready WSGI Server. Another one is uWSGI. 
+gunicorn
+# Werkzeug is used with WSGI servers (like Flask, Django tec...) to handle HTTP requests/responses efficiently.
+Werkzeug
+#numpy
+#pandas
+#requests
+#pillow

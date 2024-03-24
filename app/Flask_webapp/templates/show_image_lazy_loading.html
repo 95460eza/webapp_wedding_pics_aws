@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Images</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+         h1 {text-align: center; font-size: 40px}
+         h2 {font-size: 25px}
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust column width as needed */
+            gap: 10px; /* Adjust gap between images */
+            padding: 20px; /* Add padding around the grid */
+        }
+        .image-grid img {
+            width: 100%; /* Ensure images fill the grid cells */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .load-more-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Images</h1>
+    <br>
+    <h2><a href="/">Go back to the list</a></h2>
+    <div class="image-grid" id="imageGrid">
+        <!-- Images will be loaded dynamically here -->
+    </div>
+    <div class="load-more-btn">
+        <button id="loadMoreBtn">Load More</button>
+    </div>
+
+    <script>
+        let page = 1;
+        const pageSize = 10; // Number of images per page
+        const imageGrid = document.getElementById('imageGrid');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        let loading = false;
+
+        function fetchImages() {
+            if (loading) return;
+            loading = true;
+            fetch(`/api/images?page=${page}&pageSize=${pageSize}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(image => {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = image.src;
+                        imgElement.alt = image.alt;
+                        imageGrid.appendChild(imgElement);
+                    });
+                    page++; // Increment page number for next request
+                    loading = false;
+                })
+                .catch(error => {
+                    console.error('Error fetching images:', error);
+                    loading = false;
+                });
+        }
+
+        function handleScroll() {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                fetchImages();
+            }
+        }
+
+        loadMoreBtn.addEventListener('click', fetchImages);
+        window.addEventListener('scroll', handleScroll);
+
+        fetchImages(); // Initial load of images
+    </script>
+</body>
+</html>

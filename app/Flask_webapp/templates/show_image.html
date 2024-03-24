@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Images</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+         h1 {text-align: center; font-size: 40px}
+         h2 {font-size: 25px}
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust column width as needed */
+            gap: 10px; /* Adjust gap between images */
+            padding: 20px; /* Add padding around the grid */
+        }
+        .image-grid img {
+            width: 100%; /* Ensure images fill the grid cells */
+            height: auto; /* Maintain aspect ratio */
+        }    
+</style>
+</head>
+<body>
+    <h1>Event Images</h1>
+    <br>
+    <h2><a href="/">Go back to the list</a></h2>
+    <div class="image-grid">
+        {% for tup in list_of_pics %}
+        <a href="/images/{{ tup[0] }}" target="_blank"> <img src="data:image/jpg;base64,{{ tup[1] }}" alt="{{ tup[1] }}"></a> 
+        {% endfor %}
+    </div>
+
+</body>
+</html>
+
+    
+    
