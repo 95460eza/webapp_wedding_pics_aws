@@ -17,11 +17,8 @@ flask_web_app.config["DEBUG"] = True
 
 
 # Specify your AWS credentials
-#aws_access_key_id = 'ASIARMU5XMEEPSTB2AHP'
 aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
-#aws_secret_access_key = '1QCJL3/CRVYAP9ZRhahP0tSGPy7RLY7+j4KHM98y'
 aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
-#aws_session_token = "IQoJb3JpZ2luX2VjEEUaCmV1LW5vcnRoLTEiRjBEAiBiFM6bwbhqetsubTwjyI3dlQ28q0AWpRcQBtswB+L6MgIgFnc6D74F+seeaBiRGWofo0xLIvrGVACKChMGqqHIKvcqiwMIXhABGgwwOTU4OTM4MDczNjgiDMH+uPa3o2idpWgTFSroAum/skkK4dGRFG2yil2LrHbtE8Vkc7hwQfeJt9b7yx+1HESY0WByJO/DKneNdLg1FM8tsT7tpNX4+evUsmwwf/rZxwxJjHUfjzzlIbkCPSnVOX0JzUR1K3bno16afchmEaqXaOOpzQ4d2dPsXT10p2P0MnMiM28+UAdDLlRC0d5zt154FOFSGpzrsh9d30bfGyHPkV2faKMU84NLNQ4BhDE73MAlE4ST/abECRDPUtDQ2y77+y5nqUrVIvBCoV1BNf68UjLTJXWr+HcIcOyHZKzdLw4OQ4J1EONSwmMRzGILenZZrfJTq6M72y9++F6bPyuoz4yUAHjqhpaxF3XDZlDpenlu70wPiogUZdtVeIFLQdTITMXa/YQ+Au+HFqUv0oK8+e8pYviUy/0TNlRnIsndxs/WgEQ5nG6PC4SrurBotpTJ3+m+N+m6e/tjLCFafGyWGqp0xK6gFuPeQS+2o7QHgEhPiRsG/zDcqPuvBjqnAahYELgMac03uh9+lLaZYpQXghhUHzdCd5Xv5jLCbMlhJu3x+SBZAEIHEpFuqUiqDm2ta8c9gmGe5QsI/0yQ/3WIedIGokIYxSILOALwsZaFAGtFne7TapSkPH7jCWsn1gfpXkTVzvD13y7z9C+6V5yvRxNzbibYq6z+6xGLbsoRRXGfk3x19B0Wrdb+lnFymnj0Zg5WSWn4giSIIEH23YR3grtzk7KY"
 aws_session_token = os.environ.get("AWS_SESSION_TOKEN")
 
 # Initialize the S3 client with your credentials
