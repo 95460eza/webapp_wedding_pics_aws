@@ -80,3 +80,4 @@ jobs:
           zappa deploy dev
           #zappa update dev
           #zappa deploy dev && zappa tail dev
+          
