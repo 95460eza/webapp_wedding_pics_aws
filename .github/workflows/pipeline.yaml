@@ -77,5 +77,6 @@ jobs:
           pip install Werkzeug
           pip install boto3
           pip install zappa
-          zappa deploy dev
+          #zappa deploy dev
+          zappa update dev
           #zappa deploy dev && zappa tail dev
