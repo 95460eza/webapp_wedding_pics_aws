@@ -11,8 +11,8 @@ from flask import Flask, render_template, send_from_directory, send_file
 
 # Flask Web App Setup
 flask_web_app = Flask(__name__, static_folder="./Flask_webapp/static")
-flask_web_app.config["DEBUG"] = True
-#flask_web_app.config["DEBUG"] = False
+#flask_web_app.config["DEBUG"] = True
+flask_web_app.config["DEBUG"] = False
 
 
 

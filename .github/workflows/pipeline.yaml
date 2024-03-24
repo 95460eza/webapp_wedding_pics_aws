@@ -75,7 +75,7 @@ jobs:
           pip install flask
           pip install gunicorn
           pip install Werkzeug
-          pip install boto3
+          pip install boto3 --upgrade
           pip install zappa
           zappa deploy dev
           #zappa update dev
