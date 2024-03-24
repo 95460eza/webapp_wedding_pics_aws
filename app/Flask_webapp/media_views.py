@@ -36,6 +36,9 @@ s3_client = boto3.client('s3',
 # Specify the bucket name
 bucket_name = 'bucket-for-webapp-wedding-media'
 
+# Get List of objects in the bucket
+media_object = s3_client.list_objects_v2(Bucket=bucket_name)
+
 image_list = []
 image_data_list = []
 image_stream_list = []
@@ -49,8 +52,6 @@ prefix_image = "pictures_of_wedding/"
 prefix_video = "videos_of_wedding/"
 
 
-# Get List of objects in the bucket
-media_object = s3_client.list_objects_v2(Bucket=bucket_name)
 
 for obj in media_object['Contents']:
 
