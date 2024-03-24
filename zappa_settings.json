@@ -12,11 +12,13 @@
             # (FOLDER NAME with the App Definition Code (if not located in the same one as zappa_settings.json file).(.py FILE NAME with the App Definition Code).(HANDLER FUNCTION NAME)
             # Ex: Here "app" is a FOLDER, "media_views" is for media_views.py and "lambda_handler" is the function DEFINED INSIDE "app.py"
             #"app_function": "app.views.lambda_handler",
-            "app_function": "app.Flask_webapp.media_views.lambda_handler", 
+            #"app_function": "app.Flask_webapp.media_views.lambda_handler",
+            "app_function": "app.run.lambda_handler",
 
             # app_module POINTS RELATIVE to the location of the "zappa_settings.json" file to the module (i.e the .py file) that contains the Flask object
             #"app_module": "app.app"
-            "app_module": "app.Flask_webapp.media_views"
+            #"app_module": "app.Flask_webapp.media_views"
+            "app_module": "app.run"
 
             # Both "app_function" and "handler" BELOW serve the SAME purpose of specifying the Handler Function (the entry point for your application). "app_function" is better when the handler
             # function is NESTED within your code structure while "handler" is more straightforward. Choose the one that fits better with your project organization and preferences.
