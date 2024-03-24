@@ -16,11 +16,16 @@ flask_web_app.config["DEBUG"] = True
 
 
 
-
 # Specify your AWS credentials
 aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
+#aws_access_key_id = "ASIARMU5XMEEG74WIH5T"
 aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
+#aws_secret_access_key = "eZIZIFc17LoVyRym1QD0wxSFxMLRlg1nmdPSYQ3a"
 aws_session_token = os.environ.get("AWS_SESSION_TOKEN")
+#aws_session_token = "IQoJb3JpZ2luX2VjEGAaCmV1LW5vcnRoLTEiSDBGAiEA4Ut9aUpcSIEGOSmnkau9agdWFROiqbeoFT0xtt5vdR4CIQDJ+RGbScsCu3vLrXpoQ2hj/zF5LMcnMTGMPLerL9S0IiqLAwh6EAEaDDA5NTg5MzgwNzM2OCIMZ5ClZ0kJXqvXHEa8KugC+u2m8scGGAUtViyKKJytsFKM9XHLjRDeOGSSL8uo/5QQreG0LhnOq5yNdajtDseDPZhw9cHF/OE4G8Q1YkeuZBMk+S0dfu5hzHlPxp0feR7OAemISVUFBPl0neuVbnJwsKPtvGv+65IWJZ+F83YqM5jRQ1RT/t2orac39D91YdvyILEF5A5k7uP/vh2mom+kVRZ7sdDI5pZX6FB8rG/HtHgn7XEJQrcTAGKSTPCWXnCMSax4iyVu4s4qZpF8YkYG5PU98qlJUvVwkV1XgijGkjk3zwWX9KxjbaG7gkyfjV6XSkpov/9ep3sOBFMo6IYlCo2vBbG9XqcJL6PicwO1whDYQiMWZAK30GamqLCsAjDn9m/8yTAMkQSDLyg44xZQdZmmpyDfdlknlwjBmwVh9z4BHwU6Aa11rOTTPNiSeG1KdxEsLJg8XPuCrDPd/P4Za/q/9H9JFa/Onaetr41ToMciu7t0FYWzMKKrgbAGOqUBNHAsQ4FBUDcbPNkzGltWUtwvO1N9wp3650Y/4aeIp7U/CLzHcFXlG2sovixRpWm2d/J6jAzE/kb6QN6IHvCi87zwvheJE4BN91Tf+0v4FNo017jg/KG0OWF51tI7pQ5Ll+NEWj3TJjOdsKPal8jRBKb9ytfEsIXrIOrb6maZL0RVCGr5/NGxjII1etS0MnnbIz+cg0ydlwxJ/tOveTJHAMilaRKO"
+
+
+#print("aws_access_key_id", aws_access_key_id)
 
 # Initialize the S3 client with your credentials
 s3_client = boto3.client('s3',
@@ -29,7 +34,7 @@ s3_client = boto3.client('s3',
                          aws_session_token=aws_session_token)
 
 # Specify the bucket name
-bucket_name = 'bucket-for-webapp-wedding-media--eun1-az1--x-s3'
+bucket_name = 'bucket-for-webapp-wedding-media'
 
 image_list = []
 image_data_list = []

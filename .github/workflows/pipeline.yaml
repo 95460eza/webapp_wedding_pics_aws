@@ -1,4 +1,4 @@
-name: Pipeline to Publish Docker Image to AWS ECR and SAM deploy steps on "git push"
+name: Pipeline to Publish Docker Image to AWS ECR and Zappa deploy on "git push"
 
 on:
   push:
