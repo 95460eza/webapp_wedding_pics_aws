@@ -5,7 +5,8 @@ import random
 import base64
 from io import BytesIO
 import boto3
-from flask import Flask, render_template, send_from_directory, send_file
+#from flask import Flask, render_template, send_from_directory, send_file
+from flask import Flask, render_template, send_file, Response
 
 
 
@@ -214,6 +215,16 @@ def serve_image(filename):
 @flask_web_app.route('/videos/<path:video_path>')
 def serve_video(video_path):
 
+    def generate():
+
+        # Get the video file from S3
+        #response = s3.get_object(Bucket=BUCKET_NAME, Key=VIDEO_KEY)
+        media_as_video_object = s3_client.get_object(Bucket=bucket_name, Key=prefix_video + video_path)
+
+        # Stream the video file content
+        for chunk in iter(lambda: media_as_video_object['Body'].read(4096), b''):
+            yield chunk
+
     # Concatenate names of folder with videos and name specific video received via variable "video_path" when link clicked at route above
     # full_video_path = video_folder2 + '/' + video_path
     # print(full_video_path)
@@ -227,19 +238,18 @@ def serve_video(video_path):
     # RE-SAVE the video_stream element b/c gets closed EACH TIME USED!!!!
     #video_stream_list[video_index] = video_stream
 
-    # Get the object corresponding to the image
-    media_as_video_object = s3_client.get_object(Bucket=bucket_name, Key=prefix_video + video_path)
     # Download the picture data as a stream of bytes
-    video_stream_bytes = media_as_video_object['Body'].read()
+    #video_stream_bytes = media_as_video_object['Body'].read()
 
     #blob_client = blob_service_client.get_blob_client(container=container_name, blob=prefix_video + video_path)
     # Download the video content as a stream of bytes
     #video_stream_bytes = blob_client.download_blob().content_as_bytes()
 
     # Wrap the bytes into a BytesIO object
-    video_stream = BytesIO(video_stream_bytes)
+    #video_stream = BytesIO(video_stream_bytes)
 
-    return send_file(video_stream, mimetype='video/mp4')
+    #return send_file(video_stream, mimetype='video/mp4')
+    return Response(generate(), mimetype='video/mp4')
 
 
 
